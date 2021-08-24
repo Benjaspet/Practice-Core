@@ -13,6 +13,7 @@ class ScoreboardPacketUtil {
     /*
      * @param Player $player - The player whose scoreboard title will be set.
      * @param string $title - The scoreboard title display name.
+     * @return void
      */
 
     public function setScoreboardTitle(Player $player, string $title): void {
@@ -27,6 +28,7 @@ class ScoreboardPacketUtil {
 
     /*
      * @param Player $player - The player whose scoreboard will be removed.
+     * @return void
      */
 
     public function removeScoreboard(Player $player): void {
@@ -39,6 +41,7 @@ class ScoreboardPacketUtil {
      * @param Player $player - The player whose scoreboard line will be updated.
      * @param int $line - The line number.
      * @param string $content - The line content.
+     * @return void
      */
 
     public function createScoreboardLine(Player $player, int $line, string $content): void {
@@ -51,6 +54,23 @@ class ScoreboardPacketUtil {
         $packet = new SetScorePacket();
         $packet->type = SetScorePacket::TYPE_CHANGE;
         $packet->entries[] = $packetline;
+        $player->sendDataPacket($packet);
+    }
+
+    /*
+     * @param Player $player - The player whose scoreboard line will be removed.
+     * @param int $line = The line number.
+     * @return void
+     */
+
+    public function removeScoreboardLine(Player $player, int $line): void {
+        $entry = new ScorePacketEntry();
+        $entry->objectiveName = "objective";
+        $entry->score = $line;
+        $entry->scoreboardId = $line;
+        $packet = new SetScorePacket();
+        $packet->type = SetScorePacket::TYPE_REMOVE;
+        $packet->entries[] = $entry;
         $player->sendDataPacket($packet);
     }
 
