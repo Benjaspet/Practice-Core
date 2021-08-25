@@ -1,1 +1,3 @@
 server-name: Practice
+address: server.net
+port: 19132

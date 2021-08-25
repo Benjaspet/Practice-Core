@@ -13,9 +13,18 @@ class ScoreboardUtil {
         $this->core = $core;
     }
 
-    public function setLobbyScoreboard(Player $player, string $title): void {
-
-
-
+    public function setLobbyScoreboard(Player $player): void {
+        $title = $this->core->getManager()->getRetriever()->getCoreConfig()->get("server-name");
+        $address = $this->core->getManager()->getRetriever()->getCoreConfig()->get("address");
+        $this->core->getManager()->getScoreboardPacketUtil()->setScoreboardTitle($player, " §c§l" . $title . " ");
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 0, str_repeat(" ", 20));
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 1, "§cOnline: §f" . count($this->core->getServer()->getOnlinePlayers()));
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 2, str_repeat(" ", 5));
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 3, "§cPing: §f" . $player->getPing() . "ms");
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 4, "§cCombat: §f0");
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 5, str_repeat(" ", 4));
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 6, "§cPearl: §f0");
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 7, str_repeat(" ", 3));
+        $this->core->getManager()->getScoreboardPacketUtil()->createScoreboardLine($player, 8, "§c" . $address);
     }
 }
