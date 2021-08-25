@@ -4,6 +4,7 @@ namespace Eerie\managers\types;
 
 use Eerie\Core;
 use Eerie\managers\Manager;
+use Eerie\utils\anticheat\ClickUtil;
 use Eerie\utils\ScoreboardPacketUtil;
 use pocketmine\utils\Config;
 
@@ -22,6 +23,10 @@ class RetrieverManager extends Manager {
 
     public function getCoreConfig(): Config {
         return $this->core->config;
+    }
+
+    public function getClickUtil(): ClickUtil {
+        return $this->core->clickUtil;
     }
 
 }
