@@ -42,7 +42,7 @@ class ClickUtil {
         $player->sendPopup("§7CPS: §c§l".$this->getCps($player));
     }
 
-    public function getCps(Player $player, float $deltaTime=1.0, int $roundPrecision=1): float {
+    public function getCps(Player $player, float $deltaTime = 1.0, int $roundPrecision = 1): float {
         if (!$this->isInClicksArray($player) or empty($this->clicks[$player->getName()])) {
             return 0.0;
         }
@@ -50,6 +50,10 @@ class ClickUtil {
         return round(count(array_filter($this->clicks[$player->getName()], static function(float $t) use ($deltaTime, $mt): bool {
                 return ($mt - $t) <= $deltaTime;
         })) / $deltaTime, $roundPrecision);
+    }
+
+    private function getCore(): Core {
+        return $this->core;
     }
 
 }
