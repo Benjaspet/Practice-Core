@@ -5,6 +5,7 @@ namespace Eerie\managers\types;
 use Eerie\Core;
 use Eerie\managers\Manager;
 use Eerie\utils\ScoreboardPacketUtil;
+use pocketmine\utils\Config;
 
 class RetrieverManager extends Manager {
 
@@ -17,6 +18,10 @@ class RetrieverManager extends Manager {
 
     public function getScoreboardPacketUtil(): ScoreboardPacketUtil {
         return $this->retriever;
+    }
+
+    public function getCoreConfig(): Config {
+        return $this->core->config;
     }
 
 }

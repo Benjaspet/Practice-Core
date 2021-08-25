@@ -19,4 +19,8 @@ class Manager {
         $this->retriever = new RetrieverManager($this->core);
     }
 
+    public function getRetriever(): RetrieverManager {
+        return $this->retriever;
+    }
+
 }
