@@ -3,12 +3,16 @@
 namespace Eerie\managers;
 
 use Eerie\Core;
-use Eerie\managers\types\RetrieverManager;
+use Eerie\managers\types\ConfigManager;
+use Eerie\managers\types\TaskManager;
+use Eerie\managers\types\UtilManager;
 
 class Manager {
 
     private $core;
-    protected $retriever;
+    private $utils;
+    private $tasks;
+    public $config;
 
     public function __construct(Core $core) {
         $this->core = $core;
@@ -16,11 +20,20 @@ class Manager {
     }
 
     protected function initManagerModules(): void {
-        $this->retriever = new RetrieverManager($this->core);
+        $this->tasks = new TaskManager($this->core);
+        $this->utils = new UtilManager($this->core);
     }
 
-    public function getRetriever(): RetrieverManager {
-        return $this->retriever;
+    public function getUtilManager(): UtilManager {
+        return $this->utils;
+    }
+
+    public function getTaskManager(): TaskManager {
+        return $this->tasks;
+    }
+
+    public function getConfigManager(): ConfigManager {
+        return $this->config;
     }
 
 }
