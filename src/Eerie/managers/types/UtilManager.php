@@ -5,15 +5,16 @@ namespace Eerie\managers\types;
 use Eerie\Core;
 use Eerie\managers\Manager;
 use Eerie\utils\anticheat\ClickUtil;
+use Eerie\utils\scoreboard\ScoreboardLineUtil;
 use Eerie\utils\scoreboard\ScoreboardUtil;
 use Eerie\utils\ScoreboardPacketUtil;
 
 class UtilManager extends Manager {
 
-    private $core;
     private $clickUtil;
     private $scoreboardPacketUtil;
     private $scoreboard;
+    private $scoreboardLineUtil;
 
     public function __construct(Core $core) {
         parent::__construct($core);
@@ -25,6 +26,7 @@ class UtilManager extends Manager {
         $this->clickUtil = new ClickUtil($this->core);
         $this->scoreboard = new ScoreboardUtil($this->core);
         $this->scoreboardPacketUtil = new ScoreboardPacketUtil();
+        $this->scoreboardLineUtil = new ScoreboardLineUtil($this->core);
     }
 
     public function getClickUtil(): ClickUtil {
@@ -37,6 +39,10 @@ class UtilManager extends Manager {
 
     public function getScoreboardPacketUtil(): ScoreboardPacketUtil {
         return $this->scoreboardPacketUtil;
+    }
+
+    public function getScoreboardLineUtil(): ScoreboardLineUtil {
+        return $this->scoreboardLineUtil;
     }
 
 }

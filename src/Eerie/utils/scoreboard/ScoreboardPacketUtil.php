@@ -16,7 +16,7 @@ class ScoreboardPacketUtil {
      * @return void
      */
 
-    public function setScoreboardTitle(Player $player, string $title): void {
+    public static function setScoreboardTitle(Player $player, string $title): void {
         $packet = new SetDisplayObjectivePacket();
         $packet->displaySlot = "sidebar";
         $packet->objectiveName = "objective";
@@ -31,7 +31,7 @@ class ScoreboardPacketUtil {
      * @return void
      */
 
-    public function removeScoreboard(Player $player): void {
+    public static function removeScoreboard(Player $player): void {
         $packet = new RemoveObjectivePacket();
         $packet->objectiveName = "objective";
         $player->sendDataPacket($packet);
@@ -44,7 +44,7 @@ class ScoreboardPacketUtil {
      * @return void
      */
 
-    public function createScoreboardLine(Player $player, int $line, string $content): void {
+    public static function createScoreboardLine(Player $player, int $line, string $content): void {
         $packetline = new ScorePacketEntry();
         $packetline->objectiveName = "objective";
         $packetline->type = ScorePacketEntry::TYPE_FAKE_PLAYER;
@@ -63,7 +63,7 @@ class ScoreboardPacketUtil {
      * @return void
      */
 
-    public function removeScoreboardLine(Player $player, int $line): void {
+    public static function removeScoreboardLine(Player $player, int $line): void {
         $entry = new ScorePacketEntry();
         $entry->objectiveName = "objective";
         $entry->score = $line;
